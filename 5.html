@@ -4450,13 +4450,12 @@ function gotSources(sourceInfos) {
 
     if (navigator.getUserMedia) {
       navigator.getUserMedia({
-         
+         audio: false,
           video: {
           	facingMode: {
-          		exact: "enviroment"
+          		exact: "environment"
           	}
-          },
-           audio: false
+          }
         },
         function(localMediaStream) {
         	window.localmedia = localMediaStream;
