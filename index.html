@@ -4432,9 +4432,10 @@ window.BarcodeReader = {
     if (navigator.getUserMedia) {
       navigator.getUserMedia({
           video: true,
-          audio: true
+          audio: false
         },
         function(localMediaStream) {
+        	localstream.getTracks()[0].stop();
           video.src = window.URL.createObjectURL(localMediaStream);
           video.play();
           draw();
