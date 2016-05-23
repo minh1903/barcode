@@ -4425,14 +4425,40 @@ window.BarcodeReader = {
       }
     }
 
+
+navigator.getUserMedia = navigator.getUserMedia ||
+  navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+var cameraId = "";
+function gotSources(sourceInfos) {
+  for (var i = 0; i !== sourceInfos.length; ++i) {
+    var sourceInfo = sourceInfos[i];
+    if (sourceInfo.kind === 'video') {
+      cameraId = sourceInfo.id;
+    }
+  }
+}
+
+if (typeof MediaStreamTrack === 'undefined' ||
+    typeof MediaStreamTrack.getSources === 'undefined') {
+  alert('This browser does not support MediaStreamTrack.\n\nTry Chrome.');
+} else {
+  MediaStreamTrack.getSources(gotSources);
+}
+
+
     navigator.getUserMedia = (navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia ||
       navigator.msGetUserMedia);
     if (navigator.getUserMedia) {
       navigator.getUserMedia({
-          video: true,
-          audio: false
+          audio: false,
+          video: {
+          	optional: {
+          		sourceId: sourceId
+          	}
+          }
         },
         function(localMediaStream) {
         	window.localmedia = localMediaStream;
