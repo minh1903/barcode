@@ -4425,21 +4425,26 @@ window.BarcodeReader = {
       }
     }
 
-      navigator.mediaDevices.getUserMedia({
+ navigator.getUserMedia = (navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia ||
+      navigator.msGetUserMedia);
+      
+      navigator.getUserMedia({
          audio: false,
           video: {
           	facingMode: {
           		exact: "environment"
           	}
           }
-        }).then(
+        },
         function(localMediaStream) {
         	window.localmedia = localMediaStream;
           video.src = window.URL.createObjectURL(localMediaStream);
           video.play();
           draw();
           streaming = true;
-        }).catch(
+        },
         function(err) {
           console.log("The following error occured: " + err);
         });
