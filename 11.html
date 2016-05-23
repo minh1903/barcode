@@ -3,16 +3,17 @@
 <html lang="en">
 
 <head>
-  <title>GetUserMedia demo</title>
+  <title>Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  <canvas id="videoCanvas" width="400" height="420">
+	<center>
+  <canvas id="videoCanvas" width="90%" height="520">
   </canvas>
   <br/>
-  <center>
-  <button id="decode"  onclick="Decode()">Start decoding</button>
-  <button id="stopDecode" onclick="StopDecode()">Stop decoding</button>
+  <button id="decode" style="font-size:15px"  onclick="Decode()">Start decoding</button>
+  <button id="stopDecode" style="font-size:15px" onclick="StopDecode()">Stop decoding</button>
   </center>
   <p id="Result" style="font-size:20px;color:red"></p>
   <script>
