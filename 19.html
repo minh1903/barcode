@@ -17,12 +17,9 @@
   </center>
   <p id="Result" style="font-size:20px;color:red"></p>
   
-  <input type="file" accept="image/*;capture=camera">
+  <input type="file" accept="image/*;capture=camera" onchange="$('#img').prop('src',this.value)"/>
+  <img src="" id="img"/>
   
-  <div id="container"></div>
-  <script type="text/javascript">
-    $('#container').barcodeReader();
-  </script>
   
   
   <script>
