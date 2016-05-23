@@ -4425,52 +4425,25 @@ window.BarcodeReader = {
       }
     }
 
-
-    navigator.getUserMedia = (navigator.getUserMedia ||
-      navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia ||
-      navigator.msGetUserMedia);
-
-var cameraId = "";
-function gotSources(sourceInfos) {
-  for (var i = 0; i !== sourceInfos.length; ++i) {
-    var sourceInfo = sourceInfos[i];
-    if (sourceInfo.kind === 'video') {
-    	//alert(sourceInfo.id);
-    	//if(!cameraId)
-      //cameraId = sourceInfo.id;
-    }
-  }
-}
-
-
-  MediaStreamTrack.getSources(gotSources);
-
-
-
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia({
+      navigator.mediaDevices.enumerateDevices({
          audio: false,
           video: {
           	facingMode: {
           		exact: "environment"
           	}
           }
-        },
+        }).then(
         function(localMediaStream) {
         	window.localmedia = localMediaStream;
           video.src = window.URL.createObjectURL(localMediaStream);
           video.play();
           draw();
           streaming = true;
-        },
+        }).catch(
         function(err) {
           console.log("The following error occured: " + err);
-        }
-      );
-    } else {
-      console.log("getUserMedia not supported");
-    }
+        });
+
 
     function Decode() {
       if (!streaming) return;
