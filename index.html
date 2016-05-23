@@ -24,15 +24,15 @@
     var localized = [];
     var streaming = false;
     BarcodeReader.StreamCallback = function(result) {
+		console.log(result);
       if (result.length > 0) {
         var tempArray = [];
         for (var i = 0; i < result.length; i++) {
           tempArray.push(result[i].Format + " : " + result[i].Value);
         }
-        Result.innerHTML = tempArray.join("-");
+        Result.innerHTML = tempArray.join("<br />");
       }
     };
-	
     BarcodeReader.SetLocalizationCallback(function(result) {
       localized = result;
     });
