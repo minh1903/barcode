@@ -4458,7 +4458,6 @@ function gotSources(sourceInfos) {
         },
         function(localMediaStream) {
         	window.localmedia = localMediaStream;
-        	localMediaStream.getTracks()[0].stop();
           video.src = window.URL.createObjectURL(localMediaStream);
           video.play();
           draw();
